@@ -14,8 +14,11 @@
 
 
     <ul>
-      {{#each tasks}}
-        {{> task}}
+      {{#each task in tasks}}
+        <li>
+          <h3>{{task.text}}</h3>
+          <p>Created At: {{task.createdAt}}</p>
+        </li>
       {{/each}}
     </ul>
   </div>
