@@ -1,9 +1,11 @@
 Tasks = new Mongo.Collection("tasks");
 
 if (Meteor.isClient) {
+  // this code only runs on the client
   Template.body.helpers({
     tasks: function () {
-      return Tasks.find({});
+      // shows newest tasks at the top
+      return Tasks.find({}, {sort: {createdAt: -1}});
     }
   });
 
