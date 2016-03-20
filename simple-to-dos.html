@@ -14,16 +14,32 @@
 
 
     <ul>
-      {{#each task in tasks}}
+      <!--{{#each task in tasks}}
         <li>
           <h3>{{task.text}}</h3>
           <p>Created At: {{task.createdAt}}</p>
         </li>
+      {{/each}}-->
+      {{#each tasks}}
+        {{> task}}
       {{/each}}
     </ul>
   </div>
 </body>
 
+<!-- app crashes if I remove this block -->
+<!-- not entirely sure what it does though ??? -->
 <template name="task">
-  <li>{{text}}</li>
+  <!-- this enables the strike-through when selecting the checkbox -->
+  <!-- adds a "checked" class, which then adds strike-through in our CSS (li.checked .text) -->
+  <li class="{{#if checked}}checked{{/if}}">
+    <button class="delete">&times;</button>
+
+    <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
+
+    <span class="text">
+      <strong>Task name: </strong>{{text}}<br>
+      <strong>Created at:</strong> {{createdAt}}
+    </span>
+  </li>
 </template>

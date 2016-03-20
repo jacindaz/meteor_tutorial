@@ -28,4 +28,20 @@ if (Meteor.isClient) {
       event.target.text.value = "";
     }
   });
+
+  Template.task.events({
+    // what is this click .toggle-checked ???
+    // is it registering an event to listen for ???
+    "click .toggle-checked": function() {
+      // set the checked property to the opposite of its current value
+      // this is an individual task object
+      // _id is the id of the task document, which can be used to refer to that document
+      Tasks.update(this._id, {
+        $set: {checked: ! this.checked}
+      });
+    },
+    "click .delete": function () {
+      Tasks.remove(this._id);
+    }
+  });
 }
